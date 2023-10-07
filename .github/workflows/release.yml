@@ -42,3 +42,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.REPOSITORY_PUSH_ACCESS }}
         run: npm exec semantic-release
+      - name: Upload built apk
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: snapshot
+          path: |
+              ./*
